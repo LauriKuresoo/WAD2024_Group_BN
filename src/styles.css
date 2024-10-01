@@ -109,6 +109,48 @@ footer{
 
 .posts{
     flex: 3;
+    margin: 0 20 20 20px
+}
+
+.post{
+    padding: 10px;
+    margin: 0 0 20 0px;
+    background-color: rgb(255, 239, 252);
+    border-radius: 10px;
+}
+
+.post-header{
+    padding:10 10 0 10px ;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    background-color: rgb(255, 222, 255);
+    border-radius: 10px;
+
+}
+
+.post-header > img{
+    max-height: 90%; /* Slightly smaller than navbar height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits without distortion */
+    border-radius: 8px;
+}
+
+.post-content{
+    padding: 15 70 15 70px;
+}
+
+.post-footer{
+    height: 60px;
+    padding-left: 50px;
+}
+.post-footer img{      
+    padding: 3px; 
+    max-height: 70%; 
+    width: auto; 
+    object-fit: contain; 
+    background-color: rgb(169, 196, 107);
+    border-radius: 15px;
 }
 
 

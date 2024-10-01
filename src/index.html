@@ -5,6 +5,23 @@
     <link rel="icon" href="res/images/favicon.ico">
     <link rel="stylesheet" href="styles.css"> 
     <title>My Dashboard</title>
+
+    <script>
+      function insertDate(days) {
+        const today = new Date();
+        today = today + days;
+        const formattedDate = today.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+      });
+          const dateElements = document.querySelectorAll('.date');
+          dateElements.forEach(element => {
+              element.textContent = formattedDate;
+          });
+      }
+    </script>
+
   </head>
   <body>
     <header class="navbar">
@@ -22,8 +39,21 @@
       <div class="right-sidebar">
 
       </div>
-      <div class="posts">
+     
 
+      <div class="posts">
+          <div class="post" onload="insertDate(3)"> 
+              <div class="post-header">
+                <img src="karu.jpeg">
+                <h3>Oct 22, 2024</h3>
+              </div>
+              <div class="post-content">
+                <p>Where is the lectruer more or less at? </p>
+              </div>
+              <div class="post-footer">
+                <img id="like" src="like.png">
+              </div>
+          </div>
       </div>
       <div class="left-sidebar">
 
