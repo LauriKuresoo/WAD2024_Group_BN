@@ -144,6 +144,16 @@ footer{
     height: 60px;
     padding-left: 50px;
 }
+.post-footer button{
+    height: 100%;
+    background:local;
+    border: none;
+}
+
+.post-footer img:hover{
+    background-color: rgb(145, 172, 83);;
+}
+
 .post-footer img{      
     padding: 3px; 
     max-height: 70%; 
@@ -153,5 +163,7 @@ footer{
     border-radius: 15px;
 }
 
-
+.post-footer img.liked{
+    background-color:  rgb(104, 136, 30);;;
+  }
 
