@@ -42,7 +42,7 @@
      
 
       <div class="posts">
-          <div class="post" onload="insertDate(3)"> 
+          <div class="post" id="1"> 
               <div class="post-header">
                 <img src="karu.jpeg">
                 <h3>Oct 22, 2024</h3>
@@ -51,7 +51,23 @@
                 <p>Where is the lectruer more or less at? </p>
               </div>
               <div class="post-footer">
-                <img id="like" src="like.png">
+                  <button onclick="addOne()">
+                    <script> 
+                        let isLiked = false;
+                        const addOne = () => { 
+                          const buttons = document.querySelectorAll(".post-footer img");
+                          
+                          isLiked = !isLiked;
+                          console.log(isLiked)
+                          if (isLiked) {
+                            buttons[0].classList.add('liked');
+                          } else {
+                            buttons[0].classList.remove('liked');
+                          }
+                        }
+                    </script>
+                    <img id="like" src="like.png">
+                  </button>
               </div>
           </div>
       </div>
