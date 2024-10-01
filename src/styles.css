@@ -1,4 +1,29 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+
+main{
+    margin-top: 20px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+footer{
+    position: sticky;
+    height: 100px;
+    width: 100%;
+    background-color: rgb(241, 189, 119);
+    border-radius: 10px;
+}
+
 .navbar{
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -13,32 +38,31 @@
     padding-left: 30px;
     height: 100%;
     display: flex;
-    transition: all 0.3s ease;
     align-items: center;
 }
 
 #navleft > a{
+    display: flex;
+    align-items: center;
     height: 100%;
-    text-align: center;
-    margin: 10 20px;
-    padding: 10 30px;
+    margin: 20px;
+    padding: 0 30 2 30px;
+    
 }
 
-.navbar a:hover{
+#navleft a:hover{
     background-color: orange;
     border-radius: 8px;
-    padding: 5 30px;
-
+    transform: scale(1.1);
+    transition: all 0.08s ease-in;
 }
 
 #navright {
     height: 100%;
     display: flex;
     align-items: center;
-    padding-right: 0 50 0 50px;
     margin-right: 40px;
-  }
-  
+  }  
 
 #navimage{
     height: 100%;
@@ -52,7 +76,12 @@
     object-fit: contain; /* Ensure the image fits without distortion */
     border-radius: 8px;
 }
-
+#navimage img:hover{
+    background-color: orange;
+    border-radius: 8px;
+    transform: scale(1.6);
+    transition: all 0.08s ease-in;
+}
 
 .navbar a{
     text-decoration: none;
@@ -60,4 +89,27 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 400;
     font-size: 2em;
+    text-align: center;
 }
+
+.left-sidebar{
+    flex: 1;
+}
+
+.right-sidebar{
+    flex: 1;
+}
+
+.left-sidebar, .right-sidebar{
+    background-color: rgb(240, 226, 197);
+    border-radius: 10px;
+
+}
+
+
+.posts{
+    flex: 3;
+}
+
+
+
