@@ -73,6 +73,9 @@
                                    ${Math.floor(Math.random() * 255)}, 
                                    ${Math.floor(Math.random() * 255)})`;
 
+        bubble.addEventListener('click', function() {
+          bubble.remove(); // Removes the bubble when clicked
+        });
         bubblesContainer.appendChild(bubble);
 
         // Bubble rise animation
