@@ -1,10 +1,18 @@
 
 body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.indexBody{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.loginBody{
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 main{
@@ -23,6 +31,7 @@ footer{
 }
 
 .navbar{
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -34,18 +43,22 @@ footer{
 }
 
 #navleft{
-    padding: 10px;
+    padding-left: 30px;
     height: 100%;
+    width: 20%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content:left;    
+   
 }
 
 #navleft > a{
     display: flex;
     align-items: center;
     height: 100%;
-    margin: 0px 10px;
+    margin: 10px 10px;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 #navleft a:hover{
@@ -53,6 +66,7 @@ footer{
     border-radius: 8px;
     transform: scale(1.1);
     transition: all 0.08s ease-in;
+    padding: 5 30 5 30px;
 }
 
 #navright {
@@ -70,9 +84,9 @@ footer{
 }
 
 #navimage img {
-    max-height: 90%; /* Slightly smaller than navbar height */
-    width: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure the image fits without distortion */
+    max-height: 90%;
+    width: auto; 
+    object-fit: contain; 
     border-radius: 8px;
 }
 #navimage img:hover{

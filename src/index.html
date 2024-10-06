@@ -24,60 +24,61 @@
 
   </head>
   <body>
-    <header class="navbar">
-        <div id="navleft"> 
-            <a href="index.html">Home</a>
-            <a >|</a>
-            <a href="addPost.html">addPost</a>
-        </div>
-        <div id="navright">
-            <a href="login.html" src="karu.jpeg" id="navimage">
-                <img src="karu.jpeg">
-            </a>
-        </div>
-    </header>
-    <main>
-      <div class="left-sidebar">
-
-      </div>
-     
-
-      <div class="posts">
-          <div class="post" id="1"> 
-              <div class="post-header">
-                <img src="karu.jpeg">
-                <h3>Oct 22, 2024</h3>
-              </div>
-              <div class="post-content">
-                <p>Where is the lectruer more or less at? </p>
-              </div>
-              <div class="post-footer">
-                  <button onclick="addOne()">
-                    <script> 
-                        let isLiked = false;
-                        const addOne = () => { 
-                          const buttons = document.querySelectorAll(".post-footer img");
-                          
-                          isLiked = !isLiked;
-                          console.log(isLiked)
-                          if (isLiked) {
-                            buttons[0].classList.add('liked');
-                          } else {
-                            buttons[0].classList.remove('liked');
-                          }
-                        }
-                    </script>
-                    <img id="like" src="like.png">
-                  </button>
-              </div>
+    <div class="indexBody"> 
+      <header class="navbar">
+          <div id="navleft"> 
+              <a href="index.html">Home</a>
+              <a href="addPost.html">Add post</a>
           </div>
-      </div>
-      <div class="right-sidebar">
+          <div id="navright">
+              <a href="login.html" src="karu.jpeg" id="navimage">
+                  <img src="karu.jpeg">
+              </a>
+          </div>
+      </header>
+      <main>
+        <div class="left-sidebar">
+
+        </div>
+      
+
+        <div class="posts">
+            <div class="post" id="1"> 
+                <div class="post-header">
+                  <img src="karu.jpeg">
+                  <h3>Oct 22, 2024</h3>
+                </div>
+                <div class="post-content">
+                  <p>Where is the lectruer more or less at? </p>
+                </div>
+                <div class="post-footer">
+                    <button onclick="addOne()">
+                      <script> 
+                          let isLiked = false;
+                          const addOne = () => { 
+                            const buttons = document.querySelectorAll(".post-footer img");
+                            
+                            isLiked = !isLiked;
+                            console.log(isLiked)
+                            if (isLiked) {
+                              buttons[0].classList.add('liked');
+                            } else {
+                              buttons[0].classList.remove('liked');
+                            }
+                          }
+                      </script>
+                      <img id="like" src="like.png">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="right-sidebar">
 
       </div>
     </main>
     <footer>
 
     </footer>
+    </div>
   </body>
 </html>
