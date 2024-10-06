@@ -3,7 +3,8 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 main{
@@ -167,3 +168,73 @@ footer{
     background-color:  rgb(104, 136, 30);;;
   }
 
+
+.container {
+    display: flex;
+    justify-items: flex-start;
+    width: 40vw;
+    height: 50vh;
+    margin-top: 100px;
+    justify-content: center;
+}
+
+.login {
+    
+    height: 100%;
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.658);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px; 
+}
+
+.loginItem  {
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.loginItem a {
+    text-decoration: none;
+    color: rgb(57, 153, 182);
+}
+
+.loginItem  button {
+    background-color: rgb(52, 110, 69);
+    color: white;
+    border-radius: 8px;
+    width: 20%;
+    height: 40px;
+    border: none;
+}
+
+.loginItem  button:hover {
+    background-color: rgb(30, 76, 44);
+}
+
+.loginItem input {
+    width: 50%;
+    height: 40px;
+    margin: 0.5em ;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    background-color: rgb(227, 227, 227);
+}
+
+.loginItem input:focus{
+    outline: none;
+    box-shadow: none;
+    background-color: rgb(255, 227, 188);
+}
+
+h4 {
+    font-size: 40px;
+}
+
+.loginItem p{
+    font-size: 20px;
+    font-weight: 100;
+}
