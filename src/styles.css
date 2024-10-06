@@ -7,8 +7,7 @@ body{
 }
 
 main{
-    margin-top: 20px;
-    width: 100vw;
+    margin-top: 10px;
     height: 100vh;
     display: flex;
     flex-direction: row;
@@ -23,7 +22,6 @@ footer{
 }
 
 .navbar{
-    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,19 +33,18 @@ footer{
 }
 
 #navleft{
-    padding-left: 30px;
+    padding: 10px;
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 #navleft > a{
     display: flex;
     align-items: center;
     height: 100%;
-    margin: 20px;
-    padding: 0 30 2 30px;
-    
+    margin: 0px 10px;
 }
 
 #navleft a:hover{
@@ -62,6 +59,7 @@ footer{
     display: flex;
     align-items: center;
     margin-right: 40px;
+
   }  
 
 #navimage{
@@ -94,10 +92,13 @@ footer{
 
 .left-sidebar{
     flex: 1;
+    margin-bottom: 10px;
 }
 
 .right-sidebar{
     flex: 1;
+    margin-bottom: 10px;
+
 }
 
 .left-sidebar, .right-sidebar{
@@ -167,3 +168,37 @@ footer{
     background-color:  rgb(104, 136, 30);;;
   }
 
+#login {
+    background-color: rgba(128, 128, 128, 0.658);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 0em 5em;
+    
+
+}
+.container {
+    margin-top: 2em;
+    justify-content: center;
+}
+
+.loginItem  {
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.loginItem a {
+    text-decoration: none;
+    color: rgb(57, 153, 182);
+}
+
+.loginItem  button {
+    background-color: rgb(9, 9, 66);
+    color: white;
+}
+
+.loginItem input {
+    margin: 0.5em ;
+
+}

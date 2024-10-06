@@ -1,16 +1,66 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="res/images/favicon.ico">
-    <link rel="stylesheet" href="styles.css"> 
-    <title>My Dashboard</title>
-  </head>
-  <body>
-    <header class="navbar">
-        <div id="navleft">
-            <a href="index.html">Home</a>
-        </div>
 
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="res/images/favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <title>My Dashboard</title>
+</head>
+
+<body>
+  <header class="navbar">
+    <div id="navleft">
+      <a href="index.html">Home</a>
+    </div>
+    <div id="navright">
+      <a href="login.html" src="karu.jpeg" id="navimage">
+        <img src="karu.jpeg">
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div>
+      <div id="login">
+        <div class="loginItem">
+          <h4>Welcome to PostIt</h4>
+          <p><a href="">Creat an account</a> <br>or <br> Please log in</p>
+        </div>
+        <form id= "loginForm" class="loginItem" required>
+
+          <input type="email" id="email" name="fEmail" placeholder="Email"><br>
+
+          <input type="password" id="password" name="fPassowrd" placeholder="Password"><br>
+
+
+        </form>
+        <div class="loginItem">
+          <button type="button" onclick="return validateForm()">Log in</button>
+        </div>
+        <div class="loginItem">
+          <p><a href="">Forgot password</a> </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script>
+    function validateForm() {
+      let email = document.forms["loginForm"]["fEmail"].value.trim();
+      let password = document.forms["loginForm"]["fPassowrd"].value.trim();
+      console.log({email}, {password})
+      if (email == "" || password == "") {
+        alert("Both forms must be filled out");
+        return false;
+      } else {
+        location.href='index.html'
+        return true;
+      }
+    }
+
+
+  </script>
+</body>
+
 </html>
