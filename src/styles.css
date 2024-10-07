@@ -204,6 +204,7 @@ footer{
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     
 }
 
@@ -289,3 +290,45 @@ h4 {
       transform: translate3d(100px, -110vh, 0); /* Sway back left and rise off-screen */
     }
   }
+
+
+  @media (max-width: 800px) {
+    /*index page styles*/
+    .right-sidebar, .left-sidebar {
+       display: none;
+    }
+    .posts{
+        margin: 5px;
+    }
+    #navleft{
+        padding-left: 20px;
+    }
+    #navleft a{
+        font-size: 18px;
+        margin: 0px;
+        padding: 0 10 0 10px;
+    }
+
+    #navright {
+        margin-right: 10px;
+    }
+    .post-footer{
+        height: 45px;
+        padding-left: 10px;
+    }
+
+
+    /*login page styles*/
+    .container{
+        margin: 30 30 30 30px ;
+        width: 90%;
+        height: 90%;
+    }
+    .loginItem input {
+        width: 80%;
+    }
+    .loginItem button{
+        width: 40%;
+    }
+    
+}
