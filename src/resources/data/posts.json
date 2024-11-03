@@ -1,0 +1,71 @@
+[
+    {
+        "date": "2024-10-22",
+        "text": "Exploring the autumn colors 🍂 Can't get enough of these landscapes!",
+        "author": "Emma Johnson",
+        "likes": 532
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post2.jpg",
+        "text": "Today’s hike was a success! Found this hidden gem of a waterfall 💧",
+        "author": "Lucas Reed",
+        "likes": 782
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post3.jpg",
+        "text": "Crisp mornings, pumpkin spice, and warm sweaters. Loving the fall season! 🎃🍁",
+        "author": "Emma Johnson",
+        "likes": 415
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post4.jpg",
+        "text": "Got lost in the mountains, but the view was worth it! 🏔️ #adventure",
+        "author": "Ryan Brooks",
+        "likes": 694
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post5.jpg",
+        "text": "Made this fall wreath from scratch! Crafting season is on 🍂✨",
+        "author": "Olivia Hall",
+        "likes": 322
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post6.jpg",
+        "text": "City lights and late-night vibes 🏙️ A great end to the day.",
+        "author": "Ryan Brooks",
+        "likes": 411
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post7.jpg",
+        "text": "Just finished reading a fantastic book! 📚 Can't wait to start the next one.",
+        "author": "Sophia Martinez",
+        "likes": 298
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post8.jpg",
+        "text": "Weekend getaway with friends! 🏕️ Great memories and good laughs.",
+        "author": "Liam Taylor",
+        "likes": 527
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post9.jpg",
+        "text": "Exploring the local food scene. Found this amazing café ☕️ #foodie",
+        "author": "Mia Brown",
+        "likes": 472
+    },
+    {
+        "date": "2024-10-22",
+        "image": "https://example.com/images/post10.jpg",
+        "text": "Sunsets over the ocean never get old 🌅 #blessed",
+        "author": "Ethan White",
+        "likes": 634
+    }
+]
