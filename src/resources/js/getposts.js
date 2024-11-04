@@ -3,15 +3,26 @@ async function getAuthorImg(name) {
     const authors = await response.json();
     const author = authors.find(author => author.name === name);
     return author ? author.img : "/src/resources/images/karu.jpeg";
+};
+
+function addLike(id){
+    const likes = parseInt(document.getElementById(`like-${id}`).textContent) + 1;
+    document.getElementById(`like-${id}`).textContent = likes;
 }
+
+
 
 fetch("/src/resources/data/posts.json")
     .then(response => response.json())
     .then(async posts => {
         const postList = document.querySelector(".posts");
-        for (const post of posts) {
-            const authorImg = await getAuthorImg(post.author);
+        
+        for (const [index, post] of posts.entries()) {
+            post.id = index;
             
+            const authorImg = await getAuthorImg(post.author);
+            const postImage = post.image ? post.image : null;
+
             let div = document.createElement("div");
             div.classList.add("post");
             
@@ -24,18 +35,24 @@ fetch("/src/resources/data/posts.json")
 
             let postContent = document.createElement("div");
             postContent.classList.add("post-content");
-            postContent.innerHTML = 
-                `<p>${post.text}</p>
-                 <img src="${post.image}
+            postContent.innerHTML = `
+                    <p>${post.text}</p>
                 `;
+            if(postImage){
+                let img = document.createElement("img");
+                img.src = postImage;
+                img.classList.add("img-container");
+                postContent.appendChild(img);
+            }
             
             let postFooter = document.createElement("div");
             postFooter.classList.add("post-footer");
-            postFooter.innerHTML = `<button>  
-                                    <img id="like" src="/src/resources/images/like.png">
-                                    <p>${post.likes}</p>
-                                  </button>`;
-
+            postFooter.innerHTML = `
+                        <button class="like-button" onclick="addLike(${post.id})">
+                            <img src="/src/resources/images/like.png" alt="like">
+                        </button>
+                        <span class="like-count" id="like-${post.id}">${post.likes}</span>
+                        `;
             
             
             
