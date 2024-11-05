@@ -188,7 +188,7 @@ p + .img-container{
     width: 100%;
     
 }
-.img-container img{
+.img-container {
     width: 60%;
     border-radius: 8px;
 }
@@ -196,6 +196,9 @@ p + .img-container{
 .post-footer{
     height: 60px;
     padding-left: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 .post-footer button{
     height: 100%;
@@ -216,9 +219,50 @@ p + .img-container{
     border-radius: 15px;
 }
 
-.post-footer img.liked{
-    background-color:  rgb(104, 136, 30);;;
-  }
+
+.post-footer {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Like button style */
+.like-button {
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+/* Like count style */
+.like-count {
+    z-index: 0;
+    position: relative;
+    top: 0;
+    left: -15px; /* Positions it right next to the button */
+    background-color: rgb(98, 112, 65);;
+    color: rgb(255, 255, 255);
+    padding: 0 15 0 35px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    border-radius: 15px;
+    font-weight: bold;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    overflow: hidden; /* Ensures it stays within bounds */
+}
+
+/* Hover effect to reveal the like count */
+.like-button:hover + .like-count {
+    transform: scaleX(1);
+}
 
 
 .container {
