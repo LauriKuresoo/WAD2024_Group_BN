@@ -2,7 +2,7 @@ POSTS_URI = "https://api.jsonbin.io/v3/qs/672a1ea2e41b4d34e44edcb5"
 AUTHORS_URI = "https://api.jsonbin.io/v3/qs/672a259fe41b4d34e44ee17d"
 
 async function getAuthorImg(name) {
-    const response = await fetch(AUTHORS_URI);
+    const response = await fetch(AUTHORS_URI);   //src/resources/data/authors.json
     const authors_json = await response.json();
     const authors = authors_json.record;
     const author = authors.find(author => author.name === name);
@@ -16,7 +16,7 @@ function addLike(id){
 
 
 
-fetch(POSTS_URI)
+fetch(POSTS_URI)   //src/resources/data/posts.json
     .then(response => response.json())
     .then(async result => {
         const posts = result.record;
