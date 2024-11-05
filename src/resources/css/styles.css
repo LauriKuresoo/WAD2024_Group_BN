@@ -95,6 +95,10 @@ footer{
 
   }  
 
+.dropdown{
+    height: 100%;
+}
+
 #navimage{
     height: 100%;
     display: flex;
@@ -105,14 +109,9 @@ footer{
     max-height: 90%;
     width: auto; 
     object-fit: contain; 
-    border-radius: 8px;
+    border-radius: 20px;
 }
-#navimage img:hover{
-    background-color: orange;
-    border-radius: 8px;
-    transform: scale(1.6);
-    transition: all 0.08s ease-in;
-}
+
 
 .navbar a{
     text-decoration: none;
@@ -351,9 +350,7 @@ h4 {
         height: 45px;
         padding-left: 10px;
     }
-    #navimage img:hover{
-        transform: scale(1.2);
-    } ;
+    ;
 
 
     /*login page styles*/
@@ -401,3 +398,53 @@ h4 {
     
 }
 
+
+
+/* Dropdown Button */
+.dropbtn {
+    
+    color: rgb(231, 25, 25);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+ 
+  
+  /* The container <div> - needed to position the dropdown content 
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+    */
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 20;
+    right:10px;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    font-size: medium;
+    text-align: left;
+    
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu */
+
+.show {display:block;}
