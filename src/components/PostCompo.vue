@@ -5,13 +5,16 @@
         <h3>{{ post.date }}</h3>
     </div>
     <div class="post-content">
-        <p>{{ post.text }}</p>
+        <div class="post-text">
+            <p>{{ post.text }}</p>
+        </div>
         <img v-if="post.image" :src="post.image" class="img-container">
     </div>
     <div class="post-footer">
         <button class="like-button" @click="likePost(post.id)">
             <img src="@/assets/like.png">
         </button>
+        <span class="like-count">{{ post.likes }}</span>
     </div>
 </template>
 
@@ -22,8 +25,15 @@
             post: {
                 type: Object, // Specify the expected type
                 required: true, // Ensure the prop is passed
-    }
+            }
+        },
+        methods:{
+            likePost(postId){
+                console.log('Post likes before dispatch:', this.post.likes);
+                this.$store.dispatch("likePost", postId);
+            }
         }
+
     }
 
 </script>
@@ -38,7 +48,7 @@
 }
 
 .post-header{
-    padding:10 10 0 10px ;
+    padding:10px 10px 0px 10px ;
     display: flex;
     justify-content: space-between;
     height: 80px;
@@ -60,17 +70,22 @@ img ~ h3{
 
 .post-content{
     display: flex;
-    padding: 15 70 15 70px;
+    padding: 15px 70px 15px 70px;
     flex-direction: column;
-    
-    
+    align-items: center;
 }
 
-p + .img-container{
+.post-text{
+    width: 100%;
+    align-items: start;
+    font-size: 20px;
+}
+
+.post-text + .img-container{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 70%;
     
 }
 .img-container {
@@ -126,11 +141,11 @@ p + .img-container{
 .like-count {
     z-index: 0;
     position: relative;
-    top: 0;
+    top: -2px;
     left: -15px; /* Positions it right next to the button */
     background-color: rgb(98, 112, 65);;
     color: rgb(255, 255, 255);
-    padding: 0 15 0 35px;
+    padding: 0px 15px 0px 35px;
     height: 45px;
     display: flex;
     align-items: center;

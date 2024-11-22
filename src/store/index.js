@@ -10,9 +10,24 @@ export default createStore({
     getPostsList : (state) => state.postsList,
   },
   mutations: {
-    setPostsList : (state, posts) => state.postsList = posts
-    
+    setPostsList : (state, posts) => state.postsList = posts,
+
+    likePost(state, postId){
+      const post = state.postsList.find(p => p.id === postId);
+      if(post){ post.likes++;
+        fetch(`http://localhost:3000/posts/${post.id}`, 
+          {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({likes: post.likes})
+          })
+      }
+    },
+
   },
+
   actions: {
     async fetchPosts({commit, state}) {
       fetch('http://localhost:3000/posts')
@@ -23,6 +38,10 @@ export default createStore({
       })
       .catch(error => console.error("Error loading posts:", error));
   
+    },
+
+    likePost({commit},  postId){
+      commit('likePost', postId)
     }
   },
   modules: {

@@ -1,10 +1,10 @@
 {
-  "name": "WAD2024_GROUP_BN",
+  "name": "WAD2024_Group_BN",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "start /B npm run server && npm run serve",
-    "server": "json-server --watch Data/posts.json",
+    "server": "json-server --watch Data/posts.json --port 3000",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
