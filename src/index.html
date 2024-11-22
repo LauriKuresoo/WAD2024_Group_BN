@@ -5,6 +5,7 @@
     <link rel="icon" href="res/images/favicon.ico">
     <link rel="stylesheet" href="./resources/css/styles.css"> 
     <script type="text/javascript" src="./resources/js/getposts.js"></script>
+    <script type="text/javascript" src="./src/resources/js/script.js"></script>
     <title>My Dashboard</title>
 
     <script>
@@ -31,11 +32,19 @@
               <a href="./index.html">Home</a>
               <a href="./pages/addPost.html">Add post</a>
           </div>
-          <div id="navright">
-              <a href="./pages/login.html" src="karu.jpeg" id="navimage">
-                  <img src="./resources/images/karu.jpeg">
-              </a>
+          
+          <div class="dropdown"  >
+      
+            <a  id="navimage" >
+                <img onclick="dropDown()" class="dropbtn"  src="/src/resources/images/karu.jpeg">
+            </a>
+            <div id="myDropdown" class="dropdown-content" style="float:right;">
+              <a href="#">John Doe</a>
+              <a href="#">john.doe@ut.ee</a>
+              <a href="#">Log out</a>
+            </div>
           </div>
+
       </header>
       <main>
         <div class="left-sidebar"></div>
