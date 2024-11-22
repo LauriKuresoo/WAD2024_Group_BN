@@ -1,11 +1,15 @@
-POSTS_URI = "https://api.jsonbin.io/v3/qs/672a1ea2e41b4d34e44edcb5"
-AUTHORS_URI = "https://api.jsonbin.io/v3/qs/672a259fe41b4d34e44ee17d"
+//POSTS_URI = "https://api.jsonbin.io/v3/qs/672a1ea2e41b4d34e44edcb5"
+//POSTS_URI = "resources/data/posts.json"
+POSTS_URI = "https://api.jsonbin.io/v3/qs/6734b04facd3cb34a8a7f62f"
+//AUTHORS_URI = "https://api.jsonbin.io/v3/qs/672a259fe41b4d34e44ee17d"
+//AUTHORS_URI = "resources/data/posts.json"
+AUTHORS_URI = "https://api.jsonbin.io/v3/qs/6734b093e41b4d34e453bcc7"
 
 async function getAuthorImg(name) {
     const response = await fetch("/src/resources/data/authors.json");
     const authors = await response.json();
     const author = authors.find(author => author.name === name);
-    return author ? author.img : "/src/resources/images/karu.jpeg";
+    return author ? author.img : "resources/images/karu.jpeg";
 };
 function addLike(id){
     const likes = parseInt(document.getElementById(`like-${id}`).textContent) + 1;
@@ -51,7 +55,7 @@ fetch(POSTS_URI)
         
             postFooter.innerHTML = `
                         <button class="like-button" onclick="addLike(${post.id})">
-                            <img src="/src/resources/images/like.png" alt="like">
+                            <img src="resources/images/like.png" alt="like">
                         </button>
                         <span class="like-count" id="like-${post.id}">${post.likes}</span>
                         `;
