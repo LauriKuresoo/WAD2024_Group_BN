@@ -1,20 +1,23 @@
-import DropDownCompo from "@/components/DropDownCompo.vue";
-
 <template>
-  <header-item/>
-  <router-view />
-  
+    <nav class="navbar">
+        <div id="navleft">
+            <router-link class="link" to="/">Home</router-link>
+            <router-link class="link" to="/signup">About</router-link>
+        </div>
+        <div id="navright">
+            <router-link id="navimage" to="/signup">
+                <img src="@/assets/karu.jpeg" />
+            </router-link>
+        </div>
+    </nav>
+
 </template>
 
 <script>
-import header from '@/components/header.vue';
-
 export default {
-  name: 'App',
-  components: {header 
-    
-  }
-}
+    name: "header"
+    }
+
 </script>
 
 <style>
