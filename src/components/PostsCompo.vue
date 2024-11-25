@@ -17,6 +17,9 @@
                 <p>{{ post.likes }}</p>
             </div>
         </div>
+        <div class=" button-container">
+            <button class="toZero" v-on:click="Nullify">Delete all likes</button>
+        </div>
     </div>
 
 </template>
@@ -34,8 +37,11 @@ export default {
         this.$store.dispatch("fetchPosts");
     },
     methods: {
-        IncreaseLike (postId) {
+        IncreaseLike(postId) {
             this.$store.dispatch("IncreaseLikeAct", postId)
+        },
+        Nullify() {
+             this.$store.dispatch("NullifyAct")
         }
 
     }
@@ -46,6 +52,27 @@ export default {
 </script>
 
 <style>
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding-bottom: 10px;
+  
+}
+.toZero {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:aquamarine;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
 .posts {
     flex: 3;
     margin: 0 20 20 20px

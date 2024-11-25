@@ -16,6 +16,11 @@ export default createStore({
       if (post) {
         post.likes++;
       }
+    },
+    NullifyLikes(state) {
+      state.postsList.forEach(post => {
+        post.likes = 0;
+    })
     }
 
   },
@@ -31,6 +36,9 @@ export default createStore({
 
     }, IncreaseLikeAct({ commit }, postId) {
       commit('IncreaseLike', postId);
+    },
+    NullifyAct({ commit }) {
+      commit('NullifyLikes')
     }
   },
   modules: {
