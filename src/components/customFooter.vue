@@ -32,7 +32,7 @@ export default {
         border-radius: 10px;
         position: relative;
         margin-top: 1vh;
-        
+        margin-bottom: 2em;        
     }
     .right-side{
         align-items:center;

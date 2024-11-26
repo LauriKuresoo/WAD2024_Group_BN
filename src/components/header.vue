@@ -28,7 +28,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     background-color: rgb(238, 187, 92);
-    height: 60px;
+    min-height: 10vh;
     width: 100%;
     align-items:center;
     border-radius: 10px;
