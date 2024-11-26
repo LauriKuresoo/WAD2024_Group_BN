@@ -14,7 +14,7 @@
                 <button class="like-button" v-on:click="IncreaseLike(post.id)">
                     <img src="@/assets/like.png">
                 </button>
-                <p>{{ post.likes }}</p>
+                <p id="likes">{{ post.likes }}</p>
             </div>
         </div>
         <div class=" button-container">
@@ -52,6 +52,9 @@ export default {
 </script>
 
 <style>
+#likes {
+    margin: 0px;
+}
 
 .button-container {
   display: flex;
