@@ -28,20 +28,23 @@ export default {
 <style>
 main {
     margin-top: 10px;
-    height: 100vh;
     display: flex;
     flex-direction: row;
     flex: 1;
+    overflow-y:auto;
 }
 
 .left-sidebar{
     flex: 1;
     margin-bottom: 10px;
+    overflow-y: auto;
 }
 
 .right-sidebar{
     flex: 1;
     margin-bottom: 10px;
+    overflow-y: auto;
+    overflow-y:hidden;
 
 }
 

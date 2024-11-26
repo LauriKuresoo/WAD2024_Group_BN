@@ -3,21 +3,31 @@ import DropDownCompo from "@/components/DropDownCompo.vue";
 <template>
   <header-item/>
   <router-view />
-  
+  <custom-footer></custom-footer>
 </template>
 
 <script>
 import header from '@/components/header.vue';
-
+import customFooter from '@/components/customFooter.vue';
 export default {
   name: 'App',
-  components: {header 
-    
+  components: {
+    header,
+    customFooter
   }
 }
 </script>
 
 <style>
+
+custom-footer{
+    margin-top: auto; /* Push the footer to the bottom */
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%; 
+}
 
 .navbar{
     margin-top: 10px;

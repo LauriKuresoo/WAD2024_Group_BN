@@ -75,7 +75,9 @@ export default {
 
 .posts {
     flex: 3;
-    margin: 0 20 20 20px
+    margin: 0 20 20 20px;
+    min-height: 100vh;
+
 }
 
 .post {
@@ -83,6 +85,7 @@ export default {
     margin: 0px 20px 20px 20px;
     background-color: rgb(255, 239, 252);
     border-radius: 10px;
+    min-height: 10vh;
 }
 
 .post-header {
