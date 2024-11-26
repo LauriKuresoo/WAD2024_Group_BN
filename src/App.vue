@@ -1,22 +1,33 @@
 import DropDownCompo from "@/components/DropDownCompo.vue";
 
 <template>
-  <nav class="navbar">
-      <div id="navleft">
-        <router-link class="link" to="/">Home</router-link>
-        <router-link class="link" to="/signup">About</router-link>
-      </div>
-      <div id="navright">
-        <router-link id="navimage" to="/signup">
-          <img src="@/assets/karu.jpeg" />
-        </router-link>
-      </div>
-  </nav>
-  <router-view/>
+  <header-item/>
+  <router-view />
+  <custom-footer></custom-footer>
 </template>
 
+<script>
+import header from '@/components/header.vue';
+import customFooter from '@/components/customFooter.vue';
+export default {
+  name: 'App',
+  components: {
+    header,
+    customFooter
+  }
+}
+</script>
 
 <style>
+
+custom-footer{
+    margin-top: auto; /* Push the footer to the bottom */
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%; 
+}
 
 .navbar{
     margin-top: 10px;
