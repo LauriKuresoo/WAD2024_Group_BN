@@ -38,28 +38,52 @@ export default {
         align-items:center;
         text-align: left;
         margin-right: 4em;
-        border: 2px solid #000;
+        margin-top: 3vh;
     }
     .left-side{
         align-items: center;
         margin-right: 4em;
-        border: 2px solid #000;
     }
+
+    .left-side > p{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-weight: 400;
+        font-size: 3em;
+        text-align: center;
+        margin-top: 1vh;
+    }
+
     p{
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         font-weight: 400;
         font-size: 2em;
-        text-align: center;
+        text-align: left;
+        margin-top: 1vh;
     }
     h2{
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         font-size: 3em;
 
     }
+    a{
+        text-decoration: none;
+        color: inherit;
+
+    }
+    a:hover{
+        background-color: orange;
+        border-radius: 8px;
+        transform: scale(1.1);
+        transition: all 0.1s ease-in;
+        padding: 5 30 5 30px;
+        font-size: 1.3em;
+        font-weight: 600;
+    }
     img{
         max-height: 90%;
-        width: 5cm; 
-        object-fit: contain; 
+        width: 15vh; 
+        object-fit: contain;
+        margin: 1vh; 
         border-radius: 20px;
     }
 </style>
