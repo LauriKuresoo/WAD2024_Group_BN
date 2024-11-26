@@ -6,9 +6,10 @@
         </div>
         <div class="password-div">
         <span>Password:</span>
-        <input type="text" placeholder="password here">
+        <input type="text" placeholder="password here" v-model="password" @input="checkPassword">
+        <p class="errorMsg" v-if="IsError">{{passwordError}}</p>
         </div>
-        <button class="signup">
+        <button class="signup" :disabled="IsError">
             signup
         </button>
     </div>
@@ -18,13 +19,59 @@
 
 <script>
 export default {
-    name: "SignUpForm"
+    name: "SignUpForm",
+
+    data() {
+        return {
+            password: '',
+            passwordError: '',
+            IsError: true
+        }
+    },
+    methods: {
+        checkPassword(){
+            this.passwordError = '';
+            if(this.password === ''){
+                this.passwordError = "No password entered"
+            }
+            else if(this.password.length < 8){
+                this.passwordError = "password cant be shorter than 8 characters";
+            }
+            else if(this.password.length > 15){
+                this.passwordError = "password cant be bigger than 15 characters";
+            }
+            else if(!/[A-Z].*/.test(this.password)){
+                this.passwordError = "password needs to have at least one uppercase letter as the first letter";
+            }
+            else if(!/.*[a-z].*[a-z].*/.test(this.password)){
+                this.passwordError = "password must have at least 2 lowercase letters";
+            }
+            else if(!/[.\d.*]/.test(this.password)){
+                this.passwordError = "password needs to have atleast one number";
+            }
+            else if(!/.*_.*/.test(this.password)){
+                this.passwordError = "password needs to have atleast one '_' character";
+            }
+
+            if(this.passwordError != ''){
+                this.IsError = true;
+            }
+            else{
+                this.IsError = false;
+
+            }
+
+        }
     }
+}
 
 </script>
 
 
 <style>
+.errorMsg{
+    font-size: 1vh;
+}
 .signup-form{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     display: flex;
