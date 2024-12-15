@@ -1,17 +1,19 @@
 <template>
-    <div class="signup-form">
-        <div class="email-div">
-        <span>Email:</span>    
-        <input type="text" placeholder="email here">
+    <div class="container">
+        <div class="signup-form">
+            <div class="email-div">
+            <span>Email:</span>    
+            <input type="text" v-model="email">
+            </div>
+            <div class="password-div">
+            <span>Password:</span>
+            <input type="text" v-model="password" @input="checkPassword">
+            <p class="errorMsg" v-if="IsError">{{passwordError}}</p>
+            </div>
+            <button class="button-class" :disabled="IsError" @click="SignUp">
+                Signup
+            </button>
         </div>
-        <div class="password-div">
-        <span>Password:</span>
-        <input type="text" placeholder="password here" v-model="password" @input="checkPassword">
-        <p class="errorMsg" v-if="IsError">{{passwordError}}</p>
-        </div>
-        <button class="signup" :disabled="IsError">
-            signup
-        </button>
     </div>
 </template>
 
@@ -23,9 +25,11 @@ export default {
 
     data() {
         return {
+            email: '',
             password: '',
             passwordError: '',
-            IsError: true
+            IsError: true,
+            errorMessage: '',
         }
     },
     methods: {
@@ -61,7 +65,50 @@ export default {
 
             }
 
-        }
+        },
+
+        SignUp() {
+            if (!this.email || !this.password) {
+                this.errorMessage = "Please enter both email and password";
+                return;
+            }
+
+            var data = {
+                email: this.email,
+                password: this.password,
+            };
+
+            fetch("http://localhost:3000/auth/signup", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                console.log("Server response:", data);
+
+                if (data.error) {
+                    console.log("Error message:", data.error);
+
+                    // Adjust the condition based on the actual error message structure
+                    if (data.error.includes("email")) {
+                    this.errorMessage = "Email address is already in use";
+                    } else {
+                    this.errorMessage = "An error occurred during sign up";
+                    }
+                } else {
+                    console.log("Successful sign up:", data);
+                    this.$router.push("/");
+                }
+                })
+                .catch((e) => {
+                console.log("Error during fetch:", e);
+                this.errorMessage = "This email address has already been used";
+                });
+        },
     }
 }
 
@@ -69,77 +116,106 @@ export default {
 
 
 <style>
-.errorMsg{
-    font-size: 1vh;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh; /* Ensures vertical centering */   
 }
-.signup-form{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+.signup-form {
+    margin-top: -15vh;  
     display: flex;
     flex-direction: column;
-    margin:auto;
-    margin-top: 10px;
-    padding:10vh;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    width: 50vw;
+    font-size: 30px;
     background-color: #07eea1;
     border-radius: 4vh;
-    max-width: fit-content;
-    font-size: 3em;
-    margin-top:4vh;
-    margin-bottom: 4vh;
 }
 
-.email-div{
-    max-width: 40vh;
+.email-div,
+.password-div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 60%;
+    margin-top: 70px;
+    
+}
 
-    margin:inherit;
-    font-family: inherit;
-    font-size: inherit;
-    margin-bottom: 5vh;
+.email-div span,
+.password-div span {
+    margin-bottom: 10px; 
 }
-.email-div span{
-    margin-left: 2em;
-}
-.password-div{
 
-    margin:inherit;
-    font-family: inherit;
-    font-size: inherit;
-    margin-bottom: 5vh;
-    max-width: 50vh;
+.error-container {
+    width: 100%; /* Let the container span fully within the parent */
+    height: 3em;
+    text-align: center; /* Center the content */
 }
-.signup-form span{
-    margin-right: 5px;
+
+.errorMsg {
+    display: inline-block; /* Allows the element to shrink to fit and wrap properly */
+    max-width: 50ch; /* Restrict line length by character count, ensuring wrapping */
+    color: red;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.signup-form span {
+    margin-right: 1em;
     font-weight: 600;
 }
-.signup-form input{
-    font-family: inherit;
-    font-size: inherit;
-    font-size: 2vh;
-    max-width: 20vh;
-    text-align: center;
-    border:none;
-    padding: 1vh;
-    align-self: center;
-    border-radius: 10px;
+
+.signup-form input {
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;      /* Removes border */
+  outline: none;     /* Removes outline on focus */
 }
-.signup{
+
+.button-class {
     font-family: inherit;
-    font-size: inherit;
-    max-width: inherit;
-    margin: auto;
+    font-size: 1em;
+    width: 100%; /* Ensure buttons are consistent in size */
+    max-width: 15vh;
+    margin: 0.5em;
     background-color: orange;
+    color: #000;
     border: none;
-    padding: 1vh;
+    padding: 0.8em;
     border-radius: 20px;
+    cursor: pointer;
 }
-.signup:hover{
-    background-color: orange;
-    border-radius: 8px;
+
+.button-class:hover {
+    background-color: #ff9900;
+    border-radius: 20px;
     transform: scale(1.1);
     transition: all 0.1s ease-in;
-    font-weight: 600;
     
 }
 
 
+
+.signup-form p {
+    margin: 1em 0;
+    font-size: 0.7em;
+    font-weight: 600;
+    text-align: center;
+}
 
 </style>

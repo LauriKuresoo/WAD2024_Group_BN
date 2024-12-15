@@ -1,20 +1,25 @@
 <template>
-    <div class="signup-form">
-        <div class="email-div">
-            <span>Email:</span>
-            <input type="text" placeholder="Email here">
-        </div>
-        <div class="password-div">
-            <span>Password:</span>
-            <input type="text" placeholder="Password here" v-model="password" @input="checkPassword">
-        </div>
-        <p class="errorMsg" v-if="IsError">{{ passwordError }}</p>
+     <div class="container">
+        <div class="login-form">
+            <div class="email-div">
+                <span>Email:</span>
+                <input type="text" v-model="email">
+            </div>
+            <div class="password-div">
+                <span>Password:</span>
+                <input type="text" v-model="password">
+            </div>
+            <div class="error-container">
+                <p class="errorMsg" v-if="IsError">{{ passwordError }}</p>
+            </div>
+        
 
 
-        <div style="display: flex; justify-content: center; align-items: center; gap: 1em;">
-            <button class="button-class">Login</button>
-            <p>Or</p>
-            <button class="button-class">Signup</button>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1em;">
+                <button class="button-class" @click="LogIn">Login</button>
+                <p>Or</p>
+                <button class="button-class" @click="$router.push('/signup')">Signup</button>
+            </div>
         </div>
     </div>
 </template>
@@ -27,44 +32,37 @@ export default {
 
     data() {
         return {
+            email:'',
             password: '',
             passwordError: '',
             IsError: true
         }
     },
     methods: {
-        checkPassword(){
-            this.passwordError = '';
-            if(this.password === ''){
-                this.passwordError = "No password entered"
-            }
-            else if(this.password.length < 8){
-                this.passwordError = "password cant be shorter than 8 characters";
-            }
-            else if(this.password.length > 15){
-                this.passwordError = "password cant be bigger than 15 characters";
-            }
-            else if(!/[A-Z].*/.test(this.password)){
-                this.passwordError = "password needs to have at least one uppercase letter as the first letter";
-            }
-            else if(!/.*[a-z].*[a-z].*/.test(this.password)){
-                this.passwordError = "password must have at least 2 lowercase letters";
-            }
-            else if(!/[.\d.*]/.test(this.password)){
-                this.passwordError = "password needs to have atleast one number";
-            }
-            else if(!/.*_.*/.test(this.password)){
-                this.passwordError = "password needs to have atleast one '_' character";
-            }
-
-            if(this.passwordError != ''){
-                this.IsError = true;
-            }
-            else{
-                this.IsError = false;
-
-            }
-
+        LogIn() {
+            var data = {
+                email: this.email,
+                password: this.password
+            };
+          
+            fetch("http://localhost:3000/auth/login", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                credentials: 'include', //  Don't forget to specify this if you need cookies
+                body: JSON.stringify(data),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+            console.log(data);
+            //this.$router.push("/");
+            location.assign("/");
+            })
+            .catch((e) => {
+                console.log(e);
+                console.log("error");
+            });
         }
     }
 }
@@ -73,15 +71,27 @@ export default {
 
 
 <style>
-.signup-form {
-    
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh; /* Ensures vertical centering */   
+  
+}
+
+
+.login-form {
+    margin-top: -15vh;  
     display: flex;
     flex-direction: column;
-    height: 50vh;
-    width: 60vw;
-    font-size: 30px;
     align-items: center;
-    
+    justify-content: center;
+    height: 60vh;
+    width: 50vw;
+    font-size: 30px;
+    background-color: #07eea1;
+    border-radius: 4vh;
 }
 
 .email-div,
@@ -91,7 +101,7 @@ export default {
     flex-wrap: wrap;
     align-items: center;
     width: 60%;
-    margin-top: 50px;
+    margin-top: 70px;
     
 }
 
@@ -100,27 +110,37 @@ export default {
     margin-bottom: 10px; 
 }
 
-.errorMsg {
-    font-size: 0.5em; /* Adjust font size for readability */
-    color: red;
-    max-width: 60%; /* Keep the error message within the container */
-    text-align: center; /* Center the text */
-    line-height: 1; /* Improve readability */
-    margin-top: 5px;
-
+.error-container {
+    width: 100%; /* Let the container span fully within the parent */
+    height: 3em;
+    text-align: center; /* Center the content */
 }
 
+.errorMsg {
+    display: inline-block; /* Allows the element to shrink to fit and wrap properly */
+    max-width: 50ch; /* Restrict line length by character count, ensuring wrapping */
+    color: red;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+    margin-top: 5px;
+    text-align: center;
+}
 
-
-.signup-form span {
+.login-form span {
     margin-right: 1em;
     font-weight: 600;
 }
 
-.signup-form input {
-    width: 100%;
-    text-align: center;
-    border-radius: 10px;
+.login-form input {
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;      /* Removes border */
+  outline: none;     /* Removes outline on focus */
 }
 
 .button-class {
@@ -145,9 +165,11 @@ export default {
     
 }
 
-.signup-form p {
+
+
+.login-form p {
     margin: 1em 0;
-    font-size: 1.2em;
+    font-size: 0.7em;
     font-weight: 600;
     text-align: center;
 }
