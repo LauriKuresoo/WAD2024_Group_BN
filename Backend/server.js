@@ -37,9 +37,21 @@ app.post('/api/posts', async(req, res) => {
         console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-            "INSERT INTO posttable(body, urllink) values ($1, $2)   RETURNING*", [post.body, post.urllink]
+            "INSERT INTO posttable(body, date) values ($1, $2)   RETURNING*", [post.body, post.date]
         );
         res.json(newpost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+app.delete('/api/posts/', async(req, res) => {
+    try {
+
+        console.log("delete all post request has arrived");
+        const deletepost = await pool.query(
+            "DELETE FROM posttable RETURNING*", 
+        );
+        res.json(deletepost);
     } catch (err) {
         console.error(err.message);
     }
@@ -85,7 +97,7 @@ app.put('/api/posts/:id', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-
+/*
 app.delete('/api/posts/:id', async(req, res) => {
     try {
         const { id } = req.params;
@@ -98,6 +110,8 @@ app.delete('/api/posts/:id', async(req, res) => {
         console.error(err.message);
     }
 });
+*/
+
 
 
 // is used to check whether a user is authinticated

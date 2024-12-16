@@ -1,24 +1,24 @@
 <template>
     <div class="posts">
-        <div v-for="post in postsList" :key="post.id" class="post">
+        <div class="container">
+            <button   @click="Logout" class="center">Logout</button>
+        </div>
+        
+        <div v-for="post in posts" :key="post.id" class="post">
+            <a class= 'singlepost' :href="'/apost/' + post.id">
             <div class="post-header">
-                <img v-if="post.authorImg" :src="post.authorImg">
-                <img v-else :src="require('@/assets/karu.jpeg')">
                 <h3>{{ post.date }}</h3>
             </div>
             <div class="post-content">
-                <p>{{ post.text }}</p>
-                <img v-if="post.image" :src="post.image" class="img-container">
+                <p>{{ post.body }}</p>
+                
             </div>
-            <div class="post-footer">
-                <button class="like-button" v-on:click="IncreaseLike(post.id)">
-                    <img src="@/assets/like.png">
-                </button>
-                <p id="likes">{{ post.likes }}</p>
-            </div>
+        </a>
         </div>
+        
         <div class=" button-container">
-            <button class="toZero" v-on:click="Nullify">Delete all likes</button>
+            <button class="addPost" v-on:click="goToAddPost">Add post </button>
+            <button class="deleteAll" v-on:click="deletePosts">Delete all </button>
         </div>
     </div>
 
@@ -27,24 +27,43 @@
 <script>
 export default {
     name: "PostsCompo",
-    computed: {
-        postsList() {
-            return this.$store.getters.getPostsList;
-        }
-    },
 
-    mounted() {
-        this.$store.dispatch("fetchPosts");
-    },
+    data() {
+    return {
+      posts: [],
+    };
+  },
+
     methods: {
-        IncreaseLike(postId) {
-            this.$store.dispatch("IncreaseLikeAct", postId)
-        },
-        Nullify() {
-             this.$store.dispatch("NullifyAct")
-        }
+        fetchPosts() {
+        fetch(`http://localhost:3000/api/posts/`)
+        .then((response) => response.json())
+        .then((data) => (this.posts = data))
+        .catch((err) => console.log(err.message));
+    },
 
+        goToAddPost() {
+            this.$router.push('/addpost');
+        },
+        deletePosts() {
+            fetch(`http://localhost:3000/api/posts/`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+            this.fetchPosts();
+            
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
+
+    },
+    mounted() {
+        this.fetchPosts();
+        console.log("mounted");
+    },
 }
 
 
@@ -57,16 +76,17 @@ export default {
 }
 
 .button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center; 
-  padding-bottom: 10px;
-  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+
 }
+
 .toZero {
     display: inline-block;
     padding: 10px 20px;
-    background-color:aquamarine;
+    background-color: aquamarine;
     color: white;
     border: none;
     border-radius: 12px;

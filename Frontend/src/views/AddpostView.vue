@@ -6,6 +6,7 @@
       <button @click="addPost" class="addPost">Add Post</button>
     </div>
   </template>
+
   
   <script>
   export default {
@@ -14,6 +15,7 @@
       return {
         post: {
           body: "", 
+          date: "",
         },
       };
     },
@@ -21,6 +23,7 @@
       addPost() {
         var data = {
           body: this.post.body,
+          date: new Date(),
         };
         // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
         fetch("http://localhost:3000/api/posts", {
