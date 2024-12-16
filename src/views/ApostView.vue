@@ -35,9 +35,7 @@ export default {
     updatePost() {
       fetch(`http://localhost:3000/api/posts/${this.post.id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(this.post),
       })
         .then((response) => {
@@ -51,7 +49,7 @@ export default {
     deletePost() {
       fetch(`http://localhost:3000/api/posts/${this.post.id}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" }
       })
         .then((response) => {
           console.log(response.data);
