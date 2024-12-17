@@ -2,8 +2,10 @@
   <div class="form">
     <div class="container">
       <h3>Add a Post</h3>
-      <label for="body">Body: </label>
-      <input name="body" type="text" id="body" required v-model="post.body" />
+      <div class="body-content">
+        <label for="body">Body: </label>
+        <input name="body" type="text" id="body" placeholder="body" required v-model="post.body" />
+      </div>
       <div class=" button-container">
         <button @click="addPost" class="addPost">Add Post</button>
       </div>
@@ -60,7 +62,21 @@ export default {
   padding-top: 10px;
 
 }
+.body-content {
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+}
+label {
+  padding: 10px;
+}
+input {
 
+  border-radius: 20px;
+  border: 1px;
+  text-align: center;
+  padding: 10px;
+}
 button {
   display: inline-block;
   padding: 10px 20px;
@@ -75,13 +91,26 @@ button {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   width: 80%;
-  margin: 0 auto;
+  margin-top: 20px auto 20 px auto;
+  
   height: auto;
   padding: 0px;
   box-sizing: border-box;
+  background-color: lightgoldenrodyellow;
+  border-radius: 20px;
 
-
+}
+.form {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 90%;
+  background-color: rgb(238, 187, 92);
+  border-radius:20px ;
+  margin: 20px;
 }
 
 .post {
