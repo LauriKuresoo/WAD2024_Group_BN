@@ -1,18 +1,20 @@
+const conf = require('./database_config');
+
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-    user: "postgres",
-    password: "postgres", //sql
-    database: "WAD_HW4",
-    host: "localhost",
-    port: "5432"
+    user: conf.user,
+    password: conf.password,
+    host: conf.host,
+    port: conf.port,
 });
 
 const execute = async(query1, query2) => {
     try {
         await pool.connect(); // create a connection
         await pool.query(query1);
-        await pool.query(query2); // executes a query
+        await pool.query(query2); 
+        // executes a query
         return true;
     } catch (error) {
         console.error(error.stack);
