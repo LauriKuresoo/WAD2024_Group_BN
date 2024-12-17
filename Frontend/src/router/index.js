@@ -62,14 +62,6 @@ const routes = [
   path: "/about",
   name: "AboutUs",
   component: AboutUsView,
-  beforeEnter: async(to, from, next) => {
-      let authResult = await auth.authenticated();
-      if (!authResult) {
-          next('/login')
-      } else {
-          next();
-      }
-  }
 },
 ]
 
