@@ -2,8 +2,8 @@
     <nav class="navbar">
         <div id="navleft">
             <router-link class="link" to="/">Home</router-link>
-            <router-link class="link" to="/signup">Contacts</router-link>
-            
+            <router-link class="link" to="/signup">Sign Up</router-link>
+            <router-link class="link" to="/about">About Us</router-link>
         </div>
         
     </nav>

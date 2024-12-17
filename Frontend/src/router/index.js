@@ -6,6 +6,7 @@ import ApostView from '@/views/ApostView.vue'
 import AddpostView from '@/views/AddpostView.vue'
 
 import auth from "../auth";
+import AboutUsView from '@/views/AboutUsView.vue'
 
 const routes = [
   {
@@ -56,6 +57,19 @@ const routes = [
             next();
         }
     }
+},
+{
+  path: "/about",
+  name: "AboutUs",
+  component: AboutUsView,
+  beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }
+  }
 },
 ]
 
