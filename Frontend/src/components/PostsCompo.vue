@@ -5,15 +5,14 @@
         </div>
         
         <div v-for="post in posts" :key="post.id" class="post">
-            <a class= 'singlepost' :href="'/apost/' + post.id">
-            <div class="post-header">
-                <h3>{{ post.date }}</h3>
-            </div>
-            <div class="post-content">
-                <p>{{ post.body }}</p>
-                
-            </div>
-        </a>
+            <router-link class="singlepost" :to="{ path: '/apost/' + post.id }">
+                <div class="post-header">
+                    <h3>{{ post.date }}</h3>
+                </div>
+                <div class="post-content">
+                    <p>{{ post.body }}</p>
+                </div>
+            </router-link>
         </div>
         
         <div class=" button-container">
@@ -36,47 +35,47 @@ export default {
 
     methods: {
         Logout() {
-      fetch("http://localhost:3000/auth/logout", {
-          credentials: 'include', //  Don't forget to specify this if you need cookies
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log('jwt removed');
-        //console.log('jwt removed:' + auth.authenticated());
-        this.$router.push("/login");
-        //location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error logout");
-      });
-    },
+            fetch("http://localhost:3000/auth/logout", {
+                credentials: 'include', //  Don't forget to specify this if you need cookies
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                console.log('jwt removed');
+                //console.log('jwt removed:' + auth.authenticated());
+                this.$router.push("/login");
+                //location.assign("/");
+            })
+            .catch((e) => {
+                console.log(e);
+                console.log("error logout");
+            });
+            },
         
         goToAddPost() {
             this.$router.push('/addpost');
         },
         deletePosts() {
             fetch(`http://localhost:3000/api/posts/`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      })
-        .then((response) => {
-            this.fetchPosts();
-            
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
         })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
+            .then(() => {
+                this.fetchPosts();
+                 
+            })
+            .catch((e) => {
+            console.log(e);
+            });
+        }
 
     },
     mounted() {
-    fetch(`http://localhost:3000/api/posts/`)
-      .then((response) => response.json())
-      .then((data) => (this.posts = data))
-      .catch((err) => console.log(err.message));
-  },
+        fetch(`http://localhost:3000/api/posts/`)
+        .then((response) => response.json())
+        .then((data) => (this.posts = data))
+        .catch((err) => console.log(err.message));
+    },
 }
 
 

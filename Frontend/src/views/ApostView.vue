@@ -13,6 +13,7 @@
   </template>
 
 <script>
+
 export default {
   name: "ApostView",
   data() {
@@ -27,6 +28,7 @@ export default {
   methods: {
     fetchAPost(id) {
       console.log(id + "siin");
+      console.log("ALERT TEST")
       fetch(`http://localhost:3000/api/posts/${id}`)
         .then((response) => response.json())
         .then((data) => (this.post = data))
@@ -47,6 +49,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+        this.$router.push("/")
     },
     deletePost() {
       fetch(`http://localhost:3000/api/posts/${this.post.id}`, {
@@ -60,6 +63,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+        this.$router.push("/")
     },
   },
   mounted() {
@@ -68,3 +72,7 @@ export default {
   },
 };
 </script>
+
+<style lang="less">
+
+</style>

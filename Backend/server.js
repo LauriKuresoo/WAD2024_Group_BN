@@ -14,14 +14,13 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
-// We need to include "credentials: true" to allow cookies to be represented  
-// Also "credentials: 'include'" need to be added in Fetch API in the Vue.js App
 
-app.use(express.json()); // Parses incoming requests with JSON payloads and is based on body-parser.
-app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 
-const secret = "gdgdhdbcb770785rgdzqws"; // use a stronger secret
-const maxAge = 60 * 60; //unlike cookies, the expiresIn in jwt token is calculated by seconds not milliseconds
+app.use(express.json());
+app.use(cookieParser()); 
+
+const secret = "gdgdhdbcb770785rgdzqws";
+const maxAge = 60 * 60;
 
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret, { expiresIn: maxAge })
@@ -34,7 +33,7 @@ app.listen(port, () => {
 
 app.post('/api/posts', async(req, res) => {
     try {
-        console.log("a post request has arrived");
+        console.log("POST request for uploading new post");
         const post = req.body;
         const newpost = await pool.query(
             "INSERT INTO posttable(body, date) values ($1, $2)   RETURNING*", [post.body, post.date]
@@ -47,7 +46,7 @@ app.post('/api/posts', async(req, res) => {
 app.delete('/api/posts/', async(req, res) => {
     try {
 
-        console.log("delete all post request has arrived");
+        console.log("DELETE request for all posts");
         const deletepost = await pool.query(
             "DELETE FROM posttable RETURNING*", 
         );
@@ -59,7 +58,7 @@ app.delete('/api/posts/', async(req, res) => {
 
 app.get('/api/posts', async(req, res) => {
     try {
-        console.log("get posts request has arrived");
+        console.log("GET request for all posts");
         const posts = await pool.query(
             "SELECT * FROM posttable"
         );
@@ -71,8 +70,8 @@ app.get('/api/posts', async(req, res) => {
 
 app.get('/api/posts/:id', async(req, res) => {
     try {
-        console.log("get a post with route parameter  request has arrived");
         const { id } = req.params;
+        console.log(`GET request for post ${id}`);
         const posts = await pool.query(
             "SELECT * FROM posttable WHERE id = $1", [id]
         );
@@ -86,9 +85,9 @@ app.put('/api/posts/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const post = req.body;
-        console.log("Update request has arrived");
+        console.log("PUT request for updating post " + id)
         const updatepost = await pool.query(
-            "UPDATE posttable SET body = $2, urllink = $3 WHERE id = $1 RETURNING *",
+            "UPDATE posttable SET body = $2, date = $3 WHERE id = $1 RETURNING *",
             [id, post.body, post.date]
         );
         res.json(updatepost.rows[0]);
@@ -97,11 +96,11 @@ app.put('/api/posts/:id', async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-/*
+
 app.delete('/api/posts/:id', async(req, res) => {
     try {
         const { id } = req.params;
-        console.log("delete a post request has arrived");
+        console.log("DELETE request for ID " + id);
         const deletepost = await pool.query(
             "DELETE FROM posttable WHERE id = $1 RETURNING*", [id]
         );
@@ -110,13 +109,13 @@ app.delete('/api/posts/:id', async(req, res) => {
         console.error(err.message);
     }
 });
-*/
+
 
 
 
 // is used to check whether a user is authinticated
 app.get('/auth/authenticate', async(req, res) => {
-    console.log('authentication request has been arrived');
+    console.log('AUTHENTICATING USER...');
     const token = req.cookies.jwt; // assign the token named jwt to the token const
     //console.log("token " + token);
     let authenticated = false; // a user is not authenticated until proven the opposite
@@ -129,13 +128,13 @@ app.get('/auth/authenticate', async(req, res) => {
                     console.log('token is not verified');
                     res.send({ "authenticated": authenticated }); // authenticated = false
                 } else { // token exists and it is verified 
-                    console.log('author is authinticated');
+                    console.log('AUTHENTICATION: SUCCESS');
                     authenticated = true;
                     res.send({ "authenticated": authenticated }); // authenticated = true
                 }
             })
         } else { //applies when the token does not exist
-            console.log('author is not authinticated');
+            console.log('AUTHENTICATION: FAIL');
             res.send({ "authenticated": authenticated }); // authenticated = false
         }
     } catch (err) {
@@ -147,8 +146,7 @@ app.get('/auth/authenticate', async(req, res) => {
 // signup a user
 app.post('/auth/signup', async(req, res) => {
     try {
-        console.log("a signup request has arrived");
-        //console.log(req.body);
+        console.log("POST request for new user");
         const { email, password } = req.body;
 
         const salt = await bcrypt.genSalt(); //  generates the salt, i.e., a random string
@@ -156,11 +154,8 @@ app.post('/auth/signup', async(req, res) => {
         const authUser = await pool.query( // insert the user and the hashed password into the database
             "INSERT INTO users(email, password) values ($1, $2) RETURNING*", [email, bcryptPassword]
         );
-        console.log(authUser.rows[0].id);
+        console.log("added new user: " + authUser.rows[0].id);
         const token = await generateJWT(authUser.rows[0].id); // generates a JWT by taking the user id as an input (payload)
-        //console.log(token);
-        //res.cookie("isAuthorized", true, { maxAge: 1000 * 60, httpOnly: true });
-        //res.cookie('jwt', token, { maxAge: 6000000, httpOnly: true });
         res
             .status(201)
             .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })
@@ -174,20 +169,10 @@ app.post('/auth/signup', async(req, res) => {
 
 app.post('/auth/login', async(req, res) => {
     try {
-        console.log("a login request has arrived");
+        console.log("POST request for loging in");
         const { email, password } = req.body;
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
         if (user.rows.length === 0) return res.status(401).json({ error: "User is not registered" });
-
-        /* 
-        To authenticate users, you will need to compare the password they provide with the one in the database. 
-        bcrypt.compare() accepts the plain text password and the hash that you stored, along with a callback function. 
-        That callback supplies an object containing any errors that occurred, and the overall result from the comparison. 
-        If the password matches the hash, the result is true.
-
-        bcrypt.compare method takes the first argument as a plain text and the second argument as a hash password. 
-        If both are equal then it returns true else returns false.
-        */
 
         //Checking if the password is correct
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
@@ -207,6 +192,6 @@ app.post('/auth/login', async(req, res) => {
 
 //logout a user = deletes the jwt
 app.get('/auth/logout', (req, res) => {
-    console.log('delete jwt request arrived');
+    console.log('Logging out user, removing cookie');
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
 });

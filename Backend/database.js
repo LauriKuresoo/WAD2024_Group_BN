@@ -42,6 +42,7 @@ const createTblQuery2 = `
 execute(createTblQuery1, createTblQuery2).then(result => {
     if (result) {
         console.log('If does not exists, table "users" and  table "posttable" are created');
+        console.log("--------------------------------------------------------------------");
     }
 });
 
