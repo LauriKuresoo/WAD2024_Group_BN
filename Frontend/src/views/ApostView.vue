@@ -1,11 +1,11 @@
 <template>
-    <div class="A Post">
+    <div class="Post">
       <div id="form">
-        <h3>A Post</h3>
+        <h3>Edit post: {{ this.$route.params.id }}</h3>
         <label for="body">Body: </label>
         <input name="body" type="text" id="body" required v-model="post.body" />
       </div>
-      <div class="container">
+      <div class="options-div">
         <button @click="updatePost" class="updatePost">Update Post</button>
         <button @click="deletePost" class="deletePost">Delete Post</button>
       </div>
@@ -73,6 +73,36 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style>
+  .Post{
+    border: 1px red solid;
+    display: flex;
+    flex-direction: column;
+    
+  }
 
+  #form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px red solid;
+  padding: 20px;
+  width: 50%;
+  background-color: rgb(238, 187, 92);
+  border-radius:20px ;
+  margin: 20px;
+}
+
+.options-div {
+  display: flex;
+  border: 1px red solid;
+  margin-top: 20px 20px 20px 20px;
+  border-radius: 20px;
+  justify-content: center;
+}
+button{
+  min-width: 20vh;
+  min-height: 5vh;
+  margin: auto 10px;
+}
 </style>
