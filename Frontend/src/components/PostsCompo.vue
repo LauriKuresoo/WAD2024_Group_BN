@@ -1,6 +1,6 @@
 <template>
     <div class="posts">
-        <div class="button-container">
+        <div class="button-container-top">
             <button   @click="Logout" class="center">Logout</button>
         </div>
         
@@ -15,7 +15,7 @@
             </router-link>
         </div>
         
-        <div class=" button-container">
+        <div class=" button-container-bottom">
             <button class="addPost" @click="goToAddPost">Add post </button>
             <button class="deleteAll" @click="deletePosts">Delete all </button>
         </div>
@@ -87,13 +87,22 @@ export default {
 
 <style>
 
-
-.button-container {
+.button-container-top{
+    flex-direction: column;
+}
+.button-container-bottom{
+    margin-top: auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+.button-container-top, .button-container-bottom{
+    display: flex;
     align-items: center;
     padding-bottom: 10px;
     padding-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+
 
 }
 button {
@@ -108,14 +117,25 @@ button {
     cursor: pointer;
 
 }
+button:hover{
+    background-color: orange;
+        border-radius: 8px;
+        transform: scale(1.1);
+        transition: all 0.1s ease-in;
+        padding: 5 30 5 30px;
+        font-size: 1.3em;
+        font-weight: 600;
+        
+}
 
 .posts {
+    display: flex;
+    flex-direction: column;
     width: 80%;            
     margin: 0 auto;        
     height: auto;          
     padding: 0px;         
     box-sizing: border-box;
-    
 
 }
 

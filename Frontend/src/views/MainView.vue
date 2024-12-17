@@ -35,14 +35,10 @@ main {
 }
 
 .left-sidebar{
-    flex: 1;
-    margin-bottom: 10px;
     overflow-y: auto;
 }
 
 .right-sidebar{
-    flex: 1;
-    margin-bottom: 10px;
     overflow-y: auto;
     overflow-y:hidden;
 
@@ -51,6 +47,9 @@ main {
 .left-sidebar, .right-sidebar{
     background-color: rgb(240, 226, 197);
     border-radius: 10px;
+    flex: 1;
+    margin-bottom: 10px;
+    min-height: 50vmax;
 
 }
 .buttons{
