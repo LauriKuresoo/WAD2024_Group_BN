@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <div class="container">
+    <div class="container-addPost">
       <h3>Add a Post</h3>
       <div class="body-content">
         <label for="body">Body: </label>
@@ -58,8 +58,8 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: 10px;
-  padding-top: 10px;
+  padding:10px;
+  
 
 }
 .body-content {
@@ -90,12 +90,12 @@ button {
 
 }
 
-.container {
+.container-addPost {
   display: flex;
   flex-direction: column;
   width: 80%;
   margin-top: 20px auto 20 px auto;
-  
+  justify-content: center;
   height: auto;
   padding: 0px;
   box-sizing: border-box;
@@ -124,14 +124,16 @@ button {
 .post-header {
 
   display: flex;
-  justify-content: right;
+
   background-color: rgb(255, 222, 255);
   border-radius: 10px;
+  justify-content: right;
 
 }
 
-.post-header>h3 {
+.container-addPost>h3 {
   padding-right: 20px;
+  text-align: center;
 }
 
 

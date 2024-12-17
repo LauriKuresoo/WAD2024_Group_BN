@@ -121,17 +121,17 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh; /* Ensures vertical centering */   
+   
 }
 
 
 .signup-form {
-    margin-top: -15vh;  
+    margin:20px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 60vh;
+    
     width: 50vw;
     font-size: 30px;
     background-color: #07eea1;
@@ -188,11 +188,9 @@ export default {
 }
 
 .button-class {
+    
     font-family: inherit;
-    font-size: 1em;
-    width: 100%; /* Ensure buttons are consistent in size */
-    max-width: 15vh;
-    margin: 0.5em;
+    font-size: 1em;    
     background-color: orange;
     color: #000;
     border: none;

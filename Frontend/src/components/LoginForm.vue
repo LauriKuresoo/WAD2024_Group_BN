@@ -15,7 +15,7 @@
         
 
 
-            <div style="display: flex; justify-content: center; align-items: center; gap: 1em;">
+            <div style="display: flex; justify-content: space-around; margin-top: -40px; align-items: center; gap: 1em;">
                 <button class="button-class" @click="LogIn">Login</button>
                 <p>Or</p>
                 <button class="button-class" @click="$router.push('/signup')">Signup</button>
@@ -75,14 +75,15 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh; /* Ensures vertical centering */   
+ 
   
 }
 
 
 .login-form {
-    margin-top: -15vh;  
+    margin: 20px;
+    height: auto;
+    width: auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -146,8 +147,6 @@ export default {
 .button-class {
     font-family: inherit;
     font-size: 1em;
-    width: 100%; /* Ensure buttons are consistent in size */
-    max-width: 15vh;
     margin: 0.5em;
     background-color: orange;
     color: #000;
