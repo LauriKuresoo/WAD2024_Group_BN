@@ -53,4 +53,9 @@ main {
     border-radius: 10px;
 
 }
+.buttons{
+  display: flex;
+  flex-direction: row;
+}
+
 </style>

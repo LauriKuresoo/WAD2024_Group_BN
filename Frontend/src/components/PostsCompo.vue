@@ -17,8 +17,8 @@
         </div>
         
         <div class=" button-container">
-            <button class="addPost" v-on:click="goToAddPost">Add post </button>
-            <button class="deleteAll" v-on:click="deletePosts">Delete all </button>
+            <button class="addPost" @click="goToAddPost">Add post </button>
+            <button class="deleteAll" @click="deletePosts">Delete all </button>
         </div>
     </div>
 
@@ -35,13 +35,8 @@ export default {
   },
 
     methods: {
-        fetchPosts() {
-        fetch(`http://localhost:3000/api/posts/`)
-        .then((response) => response.json())
-        .then((data) => (this.posts = data))
-        .catch((err) => console.log(err.message));
-    },
-
+        
+        
         goToAddPost() {
             this.$router.push('/addpost');
         },
@@ -61,9 +56,11 @@ export default {
 
     },
     mounted() {
-        this.fetchPosts();
-        console.log("mounted");
-    },
+    fetch(`http://localhost:3000/api/posts/`)
+      .then((response) => response.json())
+      .then((data) => (this.posts = data))
+      .catch((err) => console.log(err.message));
+  },
 }
 
 
