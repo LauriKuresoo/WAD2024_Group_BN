@@ -88,8 +88,6 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 60vh;
-    width: 50vw;
     font-size: 30px;
     background-color: #07eea1;
     border-radius: 4vh;
