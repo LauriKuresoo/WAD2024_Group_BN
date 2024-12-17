@@ -1,4 +1,4 @@
-const conf = require('./database_config');
+const conf = require('./database_config.js');
 
 const Pool = require('pg').Pool;
 
@@ -30,7 +30,7 @@ const createTblQuery1 = `
     CREATE TABLE IF NOT EXISTS "posttable" (
 	    "id" SERIAL PRIMARY KEY,         
 	    "body" VARCHAR(1000) NOT NULL,
-        "date" date NOT NULL  
+        "date" VARCHAR(200) NOT NULL  
     );`;
 const createTblQuery2 = `
     CREATE TABLE IF NOT EXISTS "users" (

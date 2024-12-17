@@ -1,6 +1,6 @@
 <template>
     <div class="posts">
-        <div class="container">
+        <div class="button-container">
             <button   @click="Logout" class="center">Logout</button>
         </div>
         
@@ -35,7 +35,23 @@ export default {
   },
 
     methods: {
-        
+        Logout() {
+      fetch("http://localhost:3000/auth/logout", {
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log('jwt removed');
+        //console.log('jwt removed:' + auth.authenticated());
+        this.$router.push("/login");
+        //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error logout");
+      });
+    },
         
         goToAddPost() {
             this.$router.push('/addpost');
@@ -68,22 +84,20 @@ export default {
 </script>
 
 <style>
-#likes {
-    margin: 0px;
-}
+
 
 .button-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding-bottom: 10px;
+    padding-top: 10px;
 
 }
-
-.toZero {
+button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: aquamarine;
+    background-color: lightskyblue;
     color: white;
     border: none;
     border-radius: 12px;
@@ -94,9 +108,12 @@ export default {
 }
 
 .posts {
-    flex: 3;
-    margin: 0 20 20 20px;
-    min-height: 100vh;
+    width: 80%;            
+    margin: 0 auto;        
+    height: auto;          
+    padding: 0px;         
+    box-sizing: border-box;
+    
 
 }
 
@@ -109,122 +126,44 @@ export default {
 }
 
 .post-header {
-    padding: 10 10 0 10px;
+    
     display: flex;
-    justify-content: space-between;
-    height: 80px;
+    justify-content: right;
     background-color: rgb(255, 222, 255);
     border-radius: 10px;
 
 }
 
-.post-header>img {
-    max-height: 90%;
-    /* Slightly smaller than navbar height */
-    width: auto;
-    /* Maintain aspect ratio */
-    object-fit: contain;
-    /* Ensure the image fits without distortion */
-    border-radius: 8px;
+.post-header>h3 {
+    padding-right: 20px;
 }
 
-img~h3 {
-    font-size: 20px;
-}
 
 
 .post-content {
     display: flex;
-    padding: 15 70 15 70px;
+    justify-content: center;
     flex-direction: column;
 
 
 }
+.post-content>p {
+    padding: 0%;
+    margin: 10px;
 
-p+.img-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
 
 }
 
-.img-container {
-    width: 60%;
-    border-radius: 8px;
-}
-
-.post-footer {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.post-footer button {
-    height: 100%;
-    background: local;
-    border: none;
-}
-
-.post-footer img:hover {
-    background-color: rgb(145, 172, 83);
-    ;
-}
-
-.post-footer img {
-    padding: 3px;
-    max-height: 70%;
-    width: auto;
-    object-fit: contain;
-    background-color: rgb(169, 196, 107);
-    border-radius: 15px;
-}
 
 
-.post-footer {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-}
 
-.like-button {
-    width: 40px;
-    height: 40px;
-    background-color: black;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    z-index: 1;
-}
 
-/* Like count style */
-.like-count {
-    z-index: 0;
-    position: relative;
-    top: 0;
-    left: -15px;
-    /* Positions it right next to the button */
-    background-color: rgb(98, 112, 65);
-    ;
-    color: rgb(255, 255, 255);
-    padding: 0 15 0 35px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    font-weight: bold;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    /* Ensures it stays within bounds */
-}
 
-/* Hover effect to reveal the like count */
-.like-button:hover+.like-count {
-    transform: scaleX(1);
-}
+
+
+
+
+
+
+
 </style>

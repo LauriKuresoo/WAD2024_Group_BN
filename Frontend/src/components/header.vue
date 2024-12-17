@@ -2,13 +2,10 @@
     <nav class="navbar">
         <div id="navleft">
             <router-link class="link" to="/">Home</router-link>
-            <router-link class="link" to="/signup">About</router-link>
+            <router-link class="link" to="/signup">Contacts</router-link>
+            
         </div>
-        <div id="navright">
-            <router-link id="navimage" to="/signup">
-                <img src="@/assets/karu.jpeg" />
-            </router-link>
-        </div>
+        
     </nav>
 
 </template>
@@ -26,7 +23,7 @@ export default {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     background-color: rgb(238, 187, 92);
     min-height: 10vh;
     width: 100%;
@@ -41,7 +38,7 @@ export default {
     width: 20%;
     display: flex;
     align-items: center;
-    justify-content:left;    
+    justify-content:center;    
     white-space: nowrap;
    
 }

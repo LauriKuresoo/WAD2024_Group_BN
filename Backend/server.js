@@ -89,7 +89,7 @@ app.put('/api/posts/:id', async (req, res) => {
         console.log("Update request has arrived");
         const updatepost = await pool.query(
             "UPDATE posttable SET body = $2, urllink = $3 WHERE id = $1 RETURNING *",
-            [id, post.body, post.urllink]
+            [id, post.body, post.date]
         );
         res.json(updatepost.rows[0]);
     } catch (err) {
